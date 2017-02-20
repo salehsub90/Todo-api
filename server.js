@@ -6,6 +6,8 @@ var PORT = process.env.PORT || 3000;
 var todos = [];
 var todoNextId = 1;
 
+app.use(bodyParser.json());
+
 app.get('/', function (req, res){
 	res.send('TODO API Root');
 });
@@ -34,14 +36,17 @@ app.get('/todos/:id', function(req, res){
 	}
 });
 
-// POST /todos
+// POST /todos -- REST API
 app.post('/todos', function(req, res){
 	var body = req.body;
 
-	console.log('description: ' + body.description);
+	//add id field
+	body.id = todoNextId++;
+	
+	//push body into array
+	todos.push(body);
 
 	res.json(body);
-
 });
 
 app.listen(PORT, function () {
