@@ -10,7 +10,6 @@
 // 	// };
 // 	obj.age = 24;
 // }
-
 // updatePerson(person)
 // console.log(person);
 
@@ -20,7 +19,7 @@ var grades = [15, 88];
 function addGrades(gradesArr){
 	grades.push(55);
 	debugger;
-	
+
 	//gradesArr = [12, 33 ,99];
 }
 
