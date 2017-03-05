@@ -104,7 +104,7 @@ app.put('/todos/:id', function(req, res) {
 	}
 	db.todo.findById(todoId).then(function(todo) {
 		if (todo) {
-			todo.update(attributes).then(function(todo) {
+			todo.update(attributes).then(function(todo) { //update: instance method
 				res.json(todo.toJSON());
 			}, function(e) {
 				res.status(400).json(e);
@@ -123,13 +123,13 @@ app.post('/users', function(req, res) {
 	var body = _.pick(req.body, 'email', 'password');
 
 	db.user.create(body).then(function(user) {
-		res.json(user.toJSON());
+		res.json(user.toPublicJSON());
 	}, function(e) {
 		res.status(400).json(e);
 	});
 });
 
-db.sequelize.sync().then(function() {
+db.sequelize.sync().then(function() {	//force: true will truncate current table and create new 1
 	app.listen(PORT, function() {
 		console.log('express listening one port ' + PORT + '!');
 	});
