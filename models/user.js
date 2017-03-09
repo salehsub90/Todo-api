@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
 			validate: {
 				len: [7, 100]
 			},
-			set: function(value) {
+			set: function(value) {	//hash the value that we are trying to set
 				var salt = bcrypt.genSaltSync(10);
 				var hashedPassword = bcrypt.hashSync(value, salt);
 
